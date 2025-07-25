@@ -34,7 +34,7 @@ public class MemoService {
 
     public List<MemoResponseDto> getMemos() {
         // DB 조회
-        return memoRepository.findAll().stream().map(MemoResponseDto::new).toList();
+        return memoRepository.findAllByOrderByModifiedAtDesc().stream().map(MemoResponseDto::new).toList();
         // stream에서 메모가 하나씩 빠져나올 것임 map에 의해서 변환이 될거임, dto의 생성자 중에서 메모를 파라미터로 가진 생성자가
         // 호출이 될거임. -> 하나씩 변환되면서 그 뭉치를 LIST타입으로 바꾼다.
     }
