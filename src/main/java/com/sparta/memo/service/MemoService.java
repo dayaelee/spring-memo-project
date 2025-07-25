@@ -39,6 +39,11 @@ public class MemoService {
         // 호출이 될거임. -> 하나씩 변환되면서 그 뭉치를 LIST타입으로 바꾼다.
     }
 
+    public List<MemoResponseDto> getMemos(String keyword){
+        //  DB 조
+        return memoRepository.findAllByContentsContainingOrderByModifiedAtDesc(keyword).stream().map(MemoResponseDto::new).toList();
+    }
+
     @Transactional
     public Long updateMemo(Long id, MemoRequestDto requestDto) {
         // 해당 메모가 DB에 존재하는지 확인
